@@ -1,0 +1,33 @@
+name: pu11 4nd pu5h t0 d0ck3r
+
+on:
+  workflow_dispatch:
+
+jobs:
+  d0ck3r:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Docker Login
+        uses: docker/login-action@v3.6.0
+        with:
+          username: ${{ secrets.DOCHUB_USER }}
+          password: ${{ secrets.DOCHUB_PASS }}
+             
+      - name: pull the image
+        run : |
+          docker run -d \
+          --name=1m4g3 \
+          r014nd5m1th/k4111nuk5:f15aba91
+          
+      - name: ls commit and tag the image
+        run : |
+          docker images
+          docker commit 1m4g3 rem1x:1m4g3
+          docker tag rem1x:1m4g3  r014nd5m1th/k45mt0p:k411
+         
+      - name: Push the image
+        run : |
+          docker push r014nd5m1th/k45mt0p:k411
